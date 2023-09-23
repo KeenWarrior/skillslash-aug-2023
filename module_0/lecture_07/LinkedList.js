@@ -82,40 +82,35 @@ class LinkedList {
     this.head = prev;
   }
 
-  #concatenate(head1, head2) {
+  #concatenate(head1, tail1, head2, tail2) {
     if (head1 === null) {
-      return head2;
-    }
-
-    let tail1 = head1;
-    while (tail1.next !== null) {
-      tail1 = tail1.next;
+      return [head2, tail2];
     }
     tail1.next = head2;
-    return head1;
+    return [head1, tail2];
   }
 
-  kReverse(k) {
-    let resultList = null;
+//   kReverse(k) {
+//     let resultList = null;
 
-    let present = this.head;
-    while (present !== null) {
-      let head = present;
-      let prev = null;
-      let count = 0;
-      while (count < k && present !== null) {
-        const temp = present.next;
-        present.next = prev;
+//     let present = this.head;
+//     while (present !== null) {
+//       let head = present;
+//       let prev = null;
+//       let count = 0;
+//       while (count < k && present !== null) {
+//         const temp = present.next;
+//         present.next = prev;
 
-        prev = present;
-        present = temp;
-        count++;
-      }
-      head = prev;
-      resultList = this.#concatenate(resultList, head);
-    }
-    this.head = resultList;
-  }
+//         prev = present;
+//         present = temp;
+//         count++;
+//       }
+//       head = prev;
+//       resultList = this.#concatenate(resultList, head);
+//     }
+//     this.head = resultList;
+//   }
 
   reverseEvenGroups() {
 
@@ -128,7 +123,7 @@ class LinkedList {
     }
     
     let k = 1;
-    let resultList = null;
+    let [result_head, result_tail] = [null, null];
     let present = this.head;
     while (present !== null) {
 
@@ -139,6 +134,7 @@ class LinkedList {
 
         if (k % 2 === 0) {
             let head = present;
+            let tail = present;
             let prev = null;
             let count = 0;
             while (count < k && present !== null) {
@@ -150,7 +146,7 @@ class LinkedList {
               count++;
             }
             head = prev;
-            resultList = this.#concatenate(resultList, head);
+            [result_head, result_tail] = this.#concatenate(result_head, result_tail, head, tail);
         } else {
             let head = present;
             let prev = null;
@@ -161,13 +157,14 @@ class LinkedList {
               count++;
             }
             prev.next = null;
-            resultList = this.#concatenate(resultList, head);
+            const tail = prev;
+            [result_head, result_tail] = this.#concatenate(result_head, result_tail, head, tail);
         }
 
         size = size - k;
         k++;
     }
-    this.head = resultList;
+    this.head = result_head;
   };
 }
 
