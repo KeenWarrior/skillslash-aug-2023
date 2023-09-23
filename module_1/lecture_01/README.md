@@ -23,3 +23,5 @@
 - `<br>` is line break.
 - `<hr>` is Horizontal rule.
 
+### Home work
+- Diff between utf-8, utf-16 and ascii.
