@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+      #root {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        justify-content: end; /* aligns items along the main axis or major axis*/ 
+        align-items: start; /* aligns items along the cross axis or minor axis */
+      }
+
+      .click {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <button id="main" class="click">Button 1</button>
+  </body>
+</html>

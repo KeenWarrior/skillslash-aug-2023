@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #root {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+      }
+
+      .click {
+        width: 100px;
+        height: 100px;
+        background-color: blue !important;
+      }
+      
+      .heading {
+        height: 100px;
+        margin: 0px;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      #main {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <button id="main" class="click">Button 1</button>
+      <button class="click red">Button 2</button>
+      <button class="red click">Button 3</button>
+      <div>
+        <h1 class="heading">Heading</h1>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- 
+  .one {
+    color: red;
+  }
+  
+  .two {
+    color: blue;
+  }
+  
+  
+  In this example, the .two rule has higher priority than the .one rule, even though they both have the same specificity. This is because the .two rule is declared later in the CSS file. -->
