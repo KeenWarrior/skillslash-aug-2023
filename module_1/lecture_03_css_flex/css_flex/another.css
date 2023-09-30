@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+#one {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 20px;
+}
+
+.hello {
+    width: 100px;
+    height: 100px;
+}
