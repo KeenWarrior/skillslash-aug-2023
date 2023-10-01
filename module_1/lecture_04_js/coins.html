@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+      }
+
+      #root {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      #score {
+        color: red;
+        font-size: 30px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <h3 id="score">Score : 0</h3>
+    </div>
+
+    <script>
+      const root = document.getElementById("root");
+      let score = 0;
+
+      setInterval(addCoin, 500);
+      setInterval(addBomb, 500);
+
+      function addCoin() {
+        const coin = document.createElement("img");
+        coin.src =
+          "https://images-platform.99static.com/ZGWMPGt5Yll4-wKR0grdDrFuLv8=/500x500/top/smart/99designs-contests-attachments/49/49133/attachment_49133556";
+        coin.style.width = "50px";
+        coin.style.height = "50px";
+        coin.style.position = "absolute";
+        coin.style.top = Math.random() * 100 + "vh";
+        coin.style.left = Math.random() * 100 + "vw";
+        root.appendChild(coin);
+
+        const timeout = setTimeout(() => {
+          root.removeChild(coin);
+        }, 3000);
+
+        coin.addEventListener("mouseover", () => {
+          score = score + 10;
+          document.getElementById("score").textContent = "Score : " + score;
+          const coinAudio = new Audio("./coin.mp3");
+          coinAudio.play();
+          root.removeChild(coin);
+          clearTimeout(timeout);
+        });
+      }
+
+      function addBomb() {
+        const bomb = document.createElement("img");
+        bomb.src =
+          "https://media.tenor.com/wtY8p60PXwUAAAAj/nuke-radio-active.gif";
+        bomb.style.width = "50px";
+        bomb.style.height = "50px";
+        bomb.style.position = "absolute";
+        bomb.style.top = Math.random() * 100 + "vh";
+        bomb.style.left = Math.random() * 100 + "vw";
+        root.appendChild(bomb);
+
+        const timeout = setTimeout(() => {
+          root.removeChild(bomb);
+        }, 3000);
+
+        bomb.addEventListener("mouseover", () => {
+          score = 0;
+          document.getElementById("score").textContent = "Score : " + score;
+          root.removeChild(bomb);
+          const bombAudio = new Audio("./bomb.mp3");
+          bombAudio.play();
+          clearTimeout(timeout);
+        });
+      }
+    </script>
+  </body>
+</html>
