@@ -1,7 +1,6 @@
 function fetchUserInfo() {
   const inputEle = document.getElementById("input");
   const username = inputEle.value;
-  
 
   const imageEle = document.getElementById("avatarImg");
   const nameEle = document.getElementById("profileName");
