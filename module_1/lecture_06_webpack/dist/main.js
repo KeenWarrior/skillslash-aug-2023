@@ -1,0 +1,1 @@
+document.querySelector("fetch").addEventListener("click",(function(){console.log("fetching data")}));

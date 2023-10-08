@@ -1,14 +1,13 @@
 import React from "react";
-import Human from "./Human";
 
 function App() {
-
     let [count, setCount] = React.useState(1);
-    console.log(Human.population);
+    console.log("Count now is "+ count);
+    
+    console.log("Rerendered");
 
     const handleClick = function() {
         setCount(count + 1);
-        console.log("count", count);
     }
 
     return <div>

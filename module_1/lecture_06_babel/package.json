@@ -6,7 +6,6 @@
   "scripts": {
     "build": "babel src -d build",
     "start": "node dist/index.js"
-
   },
   "keywords": [],
   "author": "",
