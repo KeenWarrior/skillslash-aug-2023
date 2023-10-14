@@ -1,0 +1,11 @@
+.toolbar {
+  gap: 20px;
+}
+
+#menu-icon-button{
+    color: white;
+}
+
+.login-button {
+  color: white;
+}
