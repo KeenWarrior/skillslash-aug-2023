@@ -1,0 +1,9 @@
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
+const MULTIPLY = "MULTIPLY";
+
+export {
+    INCREMENT,
+    DECREMENT,
+    MULTIPLY
+}

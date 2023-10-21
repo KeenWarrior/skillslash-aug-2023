@@ -4,12 +4,30 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createStore } from "redux";
-import rootReducer from "./store/rootReducer";
 import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const store = createStore(rootReducer);
+function counterReducer(state = 0, action) {
+  if (action.type === "INCREMENT") {
+    if (action.payload) {
+      return state + action.payload;
+    } else {
+      return state + 1;
+    }
+  }
+
+  if (action.type === "DECREMENT") {
+    if (action.payload) {
+      return state - action.payload;
+    } else {
+      return state - 1;
+    }
+  }
+  return state;
+}
+
+const store = createStore(counterReducer);
 
 root.render(
   <React.StrictMode>
