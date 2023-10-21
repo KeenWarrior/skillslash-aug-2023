@@ -7,6 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditTodoModal from "./EditTodoModal";
 
 export default function TodoList({ todos, setTodos }) {
   const toggleCompleted = function (index) {
@@ -22,7 +23,12 @@ export default function TodoList({ todos, setTodos }) {
   };
 
   return (
-    <List>
+    <List
+      style={{
+        maxWidth: 400,
+        minWidth: 300,
+      }}
+    >
       {todos.map(function (todo, index) {
         return (
           <ListItem>
@@ -35,7 +41,10 @@ export default function TodoList({ todos, setTodos }) {
                 textDecoration: todo.completed ? "line-through" : "none",
               }}
               primary={todo.text}
+              secondary={new Date(todo.deadline).toLocaleString()}
             />
+
+            <EditTodoModal todos={todos} index={index} setTodos={setTodos} />
             <IconButton onClick={() => deleteTodo(index)}>
               <DeleteIcon />
             </IconButton>
