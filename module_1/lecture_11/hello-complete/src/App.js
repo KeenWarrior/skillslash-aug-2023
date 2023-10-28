@@ -1,21 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { styled } from "@mui/material";
+import TopAppBar from "./components/TopAppBar";
+import AboutMe from "./components/AboutMe";
 
-const RootDiv = styled("div")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    backgroundColor: "red",
-  },
-  [theme.breakpoints.up("md")]: {
-    backgroundColor: "blue",
-  },
-}));
 
 function App() {
   return (
-    <RootDiv>
-      <h1>Hello Styling</h1>
-    </RootDiv>
+    <>
+      <TopAppBar />
+      <AboutMe />
+    </>
   );
 }
 
