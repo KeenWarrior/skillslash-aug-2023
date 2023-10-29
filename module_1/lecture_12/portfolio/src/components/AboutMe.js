@@ -25,7 +25,7 @@ function AboutMe() {
   const isMdOrUp = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <RootContainer>
+    <RootContainer id="about">
       {isMdOrUp && <PersonImage src="/images/person.png" />}
       <div
         style={{

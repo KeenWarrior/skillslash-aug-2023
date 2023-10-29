@@ -1,0 +1,2 @@
+- https://www.npmjs.com/package/react-material-ui-carousel
+- https://material-ui.com/components/carousel

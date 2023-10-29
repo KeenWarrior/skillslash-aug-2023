@@ -35,13 +35,13 @@ const ActionIconButton = styled(IconButton)(({ theme }) => ({
 
 function TopAppBar() {
   const actions = [
-    { name: "Home", link: "/" },
-    { name: "About", link: "/about" },
-    { name: "Services", link: "/services" },
-    { name: "Portfolio", link: "/portfolio" },
-    { name: "Testimonials", link: "/testimonials" },
-    { name: "Blog", link: "/blog" },
-    { name: "Contact", link: "/contact" },
+    { name: "Home", link: "#home" },
+    { name: "About", link: "#about" },
+    { name: "Services", link: "#services" },
+    { name: "Portfolio", link: "#portfolio" },
+    { name: "Testimonials", link: "#testimonials" },
+    { name: "Blog", link: "#blog" },
+    { name: "Contact", link: "#contact" },
   ];
 
   const theme = useTheme();
@@ -64,7 +64,15 @@ function TopAppBar() {
         >
           {isMdOrUp &&
             actions.map((action) => {
-              return <ActionButton>{action.name}</ActionButton>;
+              return (
+                <ActionButton
+                  onClick={() => {
+                    window.location.href = action.link;
+                  }}
+                >
+                  {action.name}
+                </ActionButton>
+              );
             })}
           {!isMdOrUp && (
             <ActionIconButton>

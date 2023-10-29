@@ -15,8 +15,9 @@ const RootContainer = styled("div")(({ theme }) => ({
 }));
 
 function Services() {
+
   return (
-    <RootContainer>
+    <RootContainer id="services">
       <Typography
         variant="h3"
         gutterBottom
@@ -27,7 +28,7 @@ function Services() {
       </Typography>
       <Grid container spacing={2}>
         {services.map((service, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
             <ServiceCard>
               <Typography
                 variant="h5"
@@ -35,7 +36,6 @@ function Services() {
                   color: "#ffc107",
                 }}
               >
-                {" "}
                 {service.icon}
               </Typography>
               <h3>{service.title}</h3>

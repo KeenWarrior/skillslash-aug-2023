@@ -3,6 +3,7 @@ import "./App.css";
 import TopAppBar from "./components/TopAppBar";
 import AboutMe from "./components/AboutMe";
 import Services from "./components/Services";
+import Portfolio from "./components/Portfolio";
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <TopAppBar />
       <AboutMe />
       <Services />
+      <Portfolio />
     </>
   );
 }
