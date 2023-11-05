@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import db from "./utils/db";
 import { useLiveQuery } from "dexie-react-hooks";

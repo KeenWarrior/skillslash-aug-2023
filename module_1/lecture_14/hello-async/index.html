@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sayHello()">Click</button>
+    <button onclick="hang()">Hang</button>
+
+    <script>
+        function sayHello() {
+            console.log('Hello');
+        }
+
+        async function hang() {
+            let i = 0;
+            while (i < 10000000000) {
+                i++;
+            }
+            console.log('Done');
+        }
+    </script>
+</body>
+</html>

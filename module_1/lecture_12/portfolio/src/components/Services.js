@@ -15,8 +15,7 @@ const RootContainer = styled("div")(({ theme }) => ({
 }));
 
 function Services() {
-
-  return (
+  const res = (
     <RootContainer id="services">
       <Typography
         variant="h3"
@@ -46,6 +45,10 @@ function Services() {
       </Grid>
     </RootContainer>
   );
+
+  console.log(res);
+
+  return res;
 }
 
 export default Services;
