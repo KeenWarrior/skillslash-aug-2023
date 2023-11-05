@@ -20,9 +20,10 @@ export default function BaseLayout({ children }) {
           flexGrow: 1,
         }}
       >
+        {smUp && <BaseLeftDrawer />}
         {children}
       </div>
-      {smUp && <BaseLeftDrawer />}
+
       {smDown && <BaseBottomNav />}
     </div>
   );

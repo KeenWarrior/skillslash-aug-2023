@@ -19,7 +19,7 @@ export default function BaseLeftDrawer() {
   const navigate = useNavigate();
 
   return (
-    <Drawer open={open} variant="permanent" anchor="left">
+    <Drawer open={open} variant="persistent" anchor="left">
       <List>
         {navigation.map((item) => {
           return (
