@@ -1,61 +1,33 @@
-const fs = require("fs");
-const { v4: uuidv4 } = require("uuid");
+const Todos = require("./todos.model");
 
-function loadTodos() {
-  todos = JSON.parse(fs.readFileSync("./data/todos.json"));
-  return todos;
+async function createTodo(todo) {
+  const created = await new Todos({
+    title: todo.title,
+    description: todo.description,
+  }).save();
+  return created;
 }
 
-function createTodo(todo) {
-  const todos = loadTodos();
-  todo.id = uuidv4();
-  todos.push(todo);
-
-  fs.writeFileSync("./data/todos.json", JSON.stringify(todos));
-  return todo;
+async function getAllTodos() {
+  return await Todos.find();
 }
 
-function getTodos() {
-  return loadTodos();
+async function getTodoById(id) {
+  return await Todos.findById(id);
 }
 
-function getTodoById(id) {
-  const todos = loadTodos();
-  return todos.find((todo) => todo.id === id);
+async function updateTodo(id, patch) {
+  const updated = await Todos.findByIdAndUpdate(id, patch, { new: true });
+  return updated;
 }
 
-function updateTodo(id, patch) {
-  const todos = loadTodos();
-  let todo = todos.find(function (todo) {
-    return todo.id === id;
-  });
-
-  if (todo) {
-    todo.title = patch.title;
-    todo.description = patch.description;
-    fs.writeFileSync("./data/todos.json", JSON.stringify(todos));
-    return todo;
-  } else {
-    return undefined;
-  }
-}
-
-function deleteTodoById(id) {
-  const todos = loadTodos();
-  const index = todos.findIndex((todo) => todo.id === id);
-
-  if (index !== -1) {
-    todos.splice(index, 1);
-    fs.writeFileSync("./data/todos.json", JSON.stringify(todos));
-    return true;
-  } else {
-    return false;
-  }
+async function deleteTodoById(id) {
+  return await Todos.findByIdAndDelete(id);
 }
 
 module.exports = {
   createTodo,
-  getTodos,
+  getAllTodos,
   getTodoById,
   updateTodo,
   deleteTodoById,

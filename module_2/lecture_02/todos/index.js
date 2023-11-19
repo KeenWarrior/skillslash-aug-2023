@@ -1,17 +1,25 @@
 const express = require("express");
 const todosService = require("./todos.service");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const CONNECTION_URL =
+  "mongodb+srv://skillslash:skillslash@cluster0.sq7lkpn.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
 
-app.get("/todos/", (req, res) => {
-  res.json(todosService.getTodos());
+app.get("/todos/", async (req, res) => {
+  const todos = await todosService.getAllTodos();
+  res.json(todos);
 });
 
-app.get("/todos/:id", (req, res) => {
+app.get("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  let todo = todosService.getTodoById(id);
+  let todo = await todosService.getTodoById(id);
   if (todo) {
     res.json(todo);
   } else {
@@ -19,15 +27,15 @@ app.get("/todos/:id", (req, res) => {
   }
 });
 
-app.post("/todos/", (req, res) => {
+app.post("/todos/", async (req, res) => {
   const todo = req.body;
-  const created = todosService.createTodo(todo);
+  const created = await todosService.createTodo(todo);
   res.json(created);
 });
 
-app.put("/todos/:id", (req, res) => {
+app.put("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  const updated = todosService.updateTodo(id, req.body);
+  const updated = await todosService.updateTodo(id, req.body);
 
   if (updated) {
     res.json(updated);
@@ -36,9 +44,9 @@ app.put("/todos/:id", (req, res) => {
   }
 });
 
-app.delete("/todos/:id", (req, res) => {
+app.delete("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  const deleted = todosService.deleteTodoById(id);
+  const deleted = await todosService.deleteTodoById(id);
 
   if (deleted) {
     res.json({
@@ -49,62 +57,15 @@ app.delete("/todos/:id", (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000.");
-});
-
-// app.get("/todos/", (req, res) => {
-//     res.json(todos);
-//   });
-
-//   app.get("/todos/:id", (req, res) => {
-//     const id = req.params.id;
-//     let todo = todos.find(function (todo) {
-//       return todo.id === id;
-//     });
-
-//     if (todo) {
-//       res.json(todo);
-//     } else {
-//       res.status(404).json({ error: "Todo not found" });
-//     }
-//   });
-
-//   app.post("/todos/", (req, res) => {
-//     const todo = req.body;
-//     todo.id = uuidv4();
-//     console.log(todo);
-//     todos.push(todo);
-//     res.json(todo);
-//   });
-
-//   app.put("/todos/:id", (req, res) => {
-//     const id = req.params.id;
-//     let todo = todos.find(function (todo) {
-//       return todo.id === id;
-//     });
-//     if (todo) {
-//       todo.title = req.body.title;
-//       todo.description = req.body.description;
-//       res.json(todo);
-//     } else {
-//       res.status(404).json({ error: "Todo not found" });
-//     }
-//   });
-
-//   app.delete("/todos/:id", (req, res) => {
-//       const id = req.params.id;
-
-//       todos = todos.filter(function (todo) {
-//           return todo.id !== id;
-//       });
-
-//       res.json({
-//           message: "Todo deleted with id " + id
-//       });
-
-//   });
-
-//   app.listen(5000, () => {
-//     console.log("Server is running on port 5000.");
-//   });
+mongoose
+  .connect(CONNECTION_URL)
+  .then(() => {
+    console.log("Connected to database!");
+    app.listen(5000, () => {
+      console.log("Server is running on port 5000.");
+    });
+  })
+  .catch((error) => {
+    console.log("Connection failed!");
+    console.log(error);
+  });
