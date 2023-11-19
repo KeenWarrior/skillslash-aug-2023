@@ -36,8 +36,6 @@ app.listen(PORT, () => {
 // http://api.example.com/getRepositories?username=keenwarrior
 
 
-
-
 // http://api.example.com/keenwarrior/repositories/
 // http://api.example.com/keenwarrior/followers/
 // http://api.example.com/keenwarrior/gists/
