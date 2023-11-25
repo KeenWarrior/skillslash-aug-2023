@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-function readFile(resolve, reject) {
+const readFile = (resolve, reject) => {
+  console.log("Hello 1");
   fs.readFile("./readme.txt", "utf-8", (err, data) => {
     if (err) {
       reject(err);
@@ -8,15 +9,19 @@ function readFile(resolve, reject) {
       resolve(data);
     }
   });
-}
+};
 
 const promise = new Promise(readFile);
 
-promise.then((value) => {
+
+console.log("Hello 2");
+promise
+  .then((value) => {
     console.log(value);
-}).catch((err) => {
+  })
+  .catch((err) => {
     console.log(err);
-});
+  });
 
 // function f1(resolve, reject) {
 //   setTimeout(() => {
