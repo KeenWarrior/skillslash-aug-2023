@@ -1,8 +1,12 @@
 const mongoose  = require('mongoose');
 
 const TodoSchema = new mongoose.Schema({
-    title: String,
-    description: String
+    title: {
+      type: String,
+      required: true,  
+    },
+    description: String,
+
 });
 
 TodoSchema.methods.toJSON = function() {

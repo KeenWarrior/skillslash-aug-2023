@@ -29,8 +29,12 @@ app.get("/todos/:id", async (req, res) => {
 
 app.post("/todos/", async (req, res) => {
   const todo = req.body;
-  const created = await todosService.createTodo(todo);
-  res.json(created);
+  try {
+    const created = await todosService.createTodo(todo);
+    res.json(created);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.put("/todos/:id", async (req, res) => {
