@@ -23,6 +23,7 @@ const envSchema = Joi.object({
     SMTP_PORT: Joi.number().required(),
     SMTP_USER: Joi.string().required(),
     SMTP_PASS: Joi.string().required(),
+    PUBLIC_URL: Joi.string().required(),
 }).unknown();
 
 const { error, value: envVars } = envSchema.validate(process.env);
@@ -46,6 +47,9 @@ const config = {
         port: envVars.SMTP_PORT,
         user: envVars.SMTP_USER,
         pass: envVars.SMTP_PASS,
+    },
+    app: {
+        url: envVars.PUBLIC_URL,
     },
 };
 

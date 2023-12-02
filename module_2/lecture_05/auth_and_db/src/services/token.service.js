@@ -9,6 +9,8 @@ async function createToken(user, typeOfToken) {
     email: user.email,
     type: typeOfToken,
   };
+
+  console.log(payload)
   const token = jwt.sign(payload, config.jwt.secret, {
     expiresIn: config.jwt.expiration,
   });
@@ -19,6 +21,7 @@ async function createToken(user, typeOfToken) {
     type: typeOfToken,
     expires: new Date(Date.now() + config.jwt.expiration * 1000),
   });
+
   await tokenDoc.save();
 
   return token;

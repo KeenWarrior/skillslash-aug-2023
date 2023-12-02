@@ -37,10 +37,24 @@ async function sendEmailVerification(user) {
   };
 }
 
+async function verifyEmail(userId) {
+  const response = User.findByIdAndUpdate(
+    userId,
+    { emailVerified: true },
+    {
+      new: true,
+    }
+  );
+  if (!response) throw new Error("User not found");
+  return response;
+}
+
 async function logout() {}
 
 module.exports = {
   register,
   login,
   logout,
+  sendEmailVerification,
+  verifyEmail,
 };
