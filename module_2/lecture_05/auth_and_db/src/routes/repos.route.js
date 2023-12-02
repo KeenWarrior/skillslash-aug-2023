@@ -2,7 +2,7 @@ const router = require('express').Router();
 const reposController = require('../controllers/repos.controller');
 const auth = require('../middlewares/auth.middleware');
 
-router.get('/', reposController.getAllRepos);
+router.get('/', auth, reposController.getAllRepos);
 router.get('/:id', reposController.getRepoById);
 router.post('/', auth, reposController.createRepo);
 router.put('/:id', auth, reposController.updateRepo);

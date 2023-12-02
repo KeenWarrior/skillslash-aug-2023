@@ -30,8 +30,13 @@ async function logout(req, res) {
   res.send("logout");
 }
 
+async function sendEmailVerification(req, res) {
+  await authService.sendEmailVerification(req.user);
+}
+
 module.exports = {
   register,
   login,
   logout,
+  sendEmailVerification,
 };

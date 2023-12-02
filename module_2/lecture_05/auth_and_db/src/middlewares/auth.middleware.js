@@ -1,20 +1,22 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/config");
+
 function auth(req, res, next) {
-  console.log(req.headers);
   if (req.headers.authorization) {
     const [type, token] = req.headers.authorization.split(" ");
-    if (type === "Basic") {
-      const [username, password] = Buffer.from(token, "base64")
-        .toString()
-        .split(":");
-      if (username === "admin" && password === "admin") {
-        next();
-      } else {
+    if (type && type === "Bearer" && token) {
+      try {
+        const user = jwt.verify(token, config.jwt.secret);
+        if (user) {
+          req.user = user;
+          next();
+        }
+      } catch (error) {
         res.status(401).send({ message: "Unauthorized" });
       }
     }
-  } else {
-    res.status(401).send({ message: "Unauthorized" });
   }
+  res.status(401).send({ message: "Unauthorized" });
 }
 
 module.exports = auth;
