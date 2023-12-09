@@ -21,6 +21,27 @@ use("skillslash");
 //   },
 // });
 
-db.getCollection("users").findOne({
-  name: "Anuj Garg",
+// db.getCollection("users").findOne({
+//   name: "Anuj Garg",
+// });
+
+db.getCollection("users").find({
+  $nor: [
+    {
+      $or: [
+        {
+          address: {
+            $size: 1,
+          },
+        },
+        {
+          address: {
+            $elemMatch: {
+              primary: true,
+            },
+          },
+        },
+      ],
+    },
+  ],
 });
