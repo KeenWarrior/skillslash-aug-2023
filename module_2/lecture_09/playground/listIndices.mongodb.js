@@ -1,3 +1,4 @@
-use("boilerplate")
+use("page-demo");
 
-db.users.getIndexes();
+db.users.find({}).sort(["-name"])
+
