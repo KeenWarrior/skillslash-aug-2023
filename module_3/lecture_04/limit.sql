@@ -1,0 +1,1 @@
+SELECT * FROM Student ORDER BY id LIMIT 2;

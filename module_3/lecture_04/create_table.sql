@@ -1,0 +1,20 @@
+CREATE TABLE MATCHES (
+    id INT PRIMARY KEY,
+    season INT,
+    city VARCHAR(255),
+    date DATE,
+    team1 VARCHAR(255),
+    team2 VARCHAR(255),
+    toss_winner VARCHAR(255),
+    toss_decision VARCHAR(255),
+    result VARCHAR(255),
+    dl_applied INT,
+    winner VARCHAR(255),
+    win_by_runs	INT,
+    win_by_wickets INT,
+    player_of_match	VARCHAR(255),
+    venue VARCHAR(255),
+    umpire1	VARCHAR(255),
+    umpire2 VARCHAR(255),
+    umpire3 VARCHAR(255)
+);
