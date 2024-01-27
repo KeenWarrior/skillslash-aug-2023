@@ -7,6 +7,7 @@ async function createParkingLot(partkingLot) {
     const response = await prisma.parkingLot.create({
         data: {
             name: partkingLot.name,
+            location: partkingLot.location,
         }
     })
 
