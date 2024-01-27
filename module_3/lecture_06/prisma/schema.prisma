@@ -1,0 +1,28 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://anujgargcse:4epgXhKmPDI1@ep-steep-meadow-a1yy0vxv.ap-southeast-1.aws.neon.tech/skillslash?sslmode=require"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ParkingLot {
+    id    Int    @id @default(autoincrement())
+    name  String
+    partkingSpots PartkingSpot[]
+}
+
+model PartkingSpot {
+    id    Int    @id @default(autoincrement())
+    parkingLot ParkingLot @relation(fields: [parkingLotId], references: [id])
+    parkingLotId Int
+    floorNumber Int
+    vehicleType VehicleType @default(TWO_VEHILER)
+}
+
+enum VehicleType {
+    TWO_VEHILER
+    THREE_VEHILER
+    FOUR_VEHILER
+}
